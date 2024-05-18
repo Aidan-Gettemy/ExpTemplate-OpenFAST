@@ -1,0 +1,58 @@
+1001 InflowFile Outputs
+"Wind1VelX"
+"Wind1VelY"
+"Wind1VelZ"
+"WindHubAngXY"
+END of input file (the word "END" must appear in the first 3 columns of this last OutList line)
+---------------------------------------------------------------------------------------
+1001 ServoDyn Outputs
+"GenPwr"
+"GenTq"
+"BlPitchC1"
+"YawMomCom"
+END of input file (the word "END" must appear in the first 3 columns of this last OutList line)
+---------------------------------------------------------------------------------------
+1001 HydroDyn Outputs
+"Wave1Elev"               - Wave elevation at the WAMIT reference point (0,0)
+END of output channels and end of file. (the word "END" must appear in the first 3 columns of this line)
+---------------------------------------------------------------------------------------
+1001 ElastoDyn Outputs
+"Azimuth"
+"BldPitch1"
+"BldPitch2"
+"BldPitch3"
+"GenSpeed"
+"IPDefl1"
+"LSSGagMya"
+"LSSGagMza"
+"LSSTipMys"
+"LSSTipMzs"
+"LSShftFys"
+"LSShftFzs"
+"NacYaw"
+"NcIMUTAxs"
+"NcIMUTAys"
+"NcIMUTAzs"
+"PtfmHeave"
+"PtfmPitch"
+"PtfmRoll"
+"PtfmSurge"
+"PtfmSway"
+"PtfmYaw"
+"RotSpeed"
+"RotThrust"
+"RotTorq"
+"TwrBsFxt"
+"TwrBsFyt"
+"TwrBsFzt"
+"TwrBsMxt"
+"TwrBsMyt"
+"TwrBsMzt"
+"TwstDefl1"
+END of input file (the word "END" must appear in the first 3 columns of this last OutList line)
+---------------------- NODE OUTPUTS --------------------------------------------
+          1   BldNd_BladesOut  - Blades to output
+         99   BldNd_BlOutNd   - Blade nodes on each blade (currently unused)
+              OutList     - The next line(s) contains a list of output parameters.  See OutListParameters.xlsx, ElastoDyn_Nodes tab for a listing of available output channels, (-)
+END of input file (the word "END" must appear in the first 3 columns of this last OutList line)
+---------------------------------------------------------------------------------------
