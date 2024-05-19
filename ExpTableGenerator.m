@@ -18,10 +18,10 @@ num = 2;
 % Number of numerical inputs
 dim = 5;
 % windfileID
-windfileID = "IEA15MW_ws08.0-1_Seed1.bts";
+windfileID = "IEA15MW_ws08.0ms-1_Seed1.bts";
 M = cell(num,dim);
 M(1,:) = {categorical(windfileID),1,1,1,1};
-M(2,:) = {categorical(windfileID),.8,.8,.8,.8};
+M(2,:) = {categorical(windfileID),.9,.9,.9,.9};
 
 % Build the table and save it
 inputDesignTab = cell2table(M,"VariableNames",invarNames);
