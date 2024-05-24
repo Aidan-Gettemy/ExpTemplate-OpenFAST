@@ -5,17 +5,17 @@ addpath Template_IEA-15-240-RWT-Monopile/
 %% Experiment Settings
 
 % Experiment Name
-expName = "TwBaseDamage1";
+expName = "TwBaseDamageMorris";
 % TemplateID: set the location for the Template Files
 TempID = "Template_IEA-15-240-RWT-Monopile";
 % Simulation Bounds (which row to start and stop on)
-JobNum = [1, 2];
+JobNum = [1, 50];
 % Test Duration in seconds
-test_dur = 5600;
+test_dur = 180;%5600;
 % Extract Statistics from the last x seconds
-trans = 5600;
+trans = 60;%5600;
 % Time Step
-DT = 1/40;
+DT = 1/200;
 % Delete .out files
 delOut = "false"; %"true" or "false"
 % Delete Big TS dataTable
@@ -75,7 +75,7 @@ for i = 1:numel(data)
     end
 
 end
-
+%%
 % Create ExperimentResultTable
 variableList = {'mean','sd'};
 expTab = combineResults(M,StatusFileID,variableList);
@@ -85,3 +85,4 @@ expTab = combineResults(M,StatusFileID,variableList);
 saveTabID = ExperimentID+"/ExperimentResultTable.txt";
 writetable(expTab,saveTabID);
 status = movefile(StatusFileID, ExperimentID);
+%%
