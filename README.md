@@ -1,6 +1,6 @@
 # Tower Experiment: A Template for OpenFAST Experimentation
 
-This library provides another solution for managing experiments using the OpenFAST simulation tool [OpenFAST](https://github.com/OpenFAST/openfast?tab=readme-ov-file) for those who enjoy using MatLab.  Think of this code as template for further applications.
+This library provides another solution for managing experiments using the OpenFAST simulation tool [OpenFAST](https://github.com/OpenFAST/openfast?tab=readme-ov-file) for those who use MatLab.  Think of this code as a template for further applications.
 
 # Description:
 
