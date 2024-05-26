@@ -1,4 +1,4 @@
-# A Template for OpenFAST Experimentation
+# Template for OpenFAST Experimentation
 
 This library provides a solution for managing experiments with the OpenFAST simulation tool [OpenFAST](https://github.com/OpenFAST/openfast?tab=readme-ov-file) using MatLab.  This code is a general template, fit to be modified for many different experiments.
 
