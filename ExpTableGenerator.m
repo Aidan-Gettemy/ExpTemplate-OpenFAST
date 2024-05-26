@@ -1,8 +1,7 @@
 clc;close;clear;
 %% Run this code to generate a table of inputs for an experiment
-%read morris points 
 
-% Name of the experiment
+% Name the experiment
 expName = "TwBaseDamageMorris";
 % This will explore the impact of changing 
 % N1FAS: [.9,1]
