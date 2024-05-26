@@ -78,7 +78,7 @@ Now we can go in depth on some of the key helper functions to explain how they w
 
 
 
-### Process for Running
+### Process for Running a new Experiment
 
 - Run `ExpTableGenerator.m` to generate a table of inputs for each test.
 - Run `ExpDriver.m` to set up the `Simulate` folder and run OpenFAST on each test, gathering up the results from all the tests into a data table, before moving the data table and the `StatusFile.txt` to the experiment folder within the `Data` folder.
@@ -88,4 +88,6 @@ Now we can go in depth on some of the key helper functions to explain how they w
 This application is already set up in these files.  Follow the following steps to recreate results.
 1. Run `ExpTableGenerator.m`
 2. Run `ExpDriver.m`
-3. Run ONLY the second section and beyond within `MorrisMethod.iypn`.  Follow the comments to make changes to look at different outputs.
+3. Run ONLY the second section and beyond within `MorrisMethod.iypn`.  Follow the comments to make changes to look at different outputs.  If the user wants to run the `MorrisMethod.iypn` code to generate new Morris Method points, then the first section should be run, then run steps **1 - 3**.
+
+Explanation of the `MorrisMethod.iypn` code.
