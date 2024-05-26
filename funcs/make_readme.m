@@ -16,9 +16,9 @@ function header = make_readme(tableRow,readmeTempID,testNum,testDur,DT)
         sum = sum + tableRow(1,1+i).Variables;
     end
     if sum<4
-        name = "100"; % Healthy
+        name = "100"; % Tower damage
     else
-        name = "000"; % Tower damage
+        name = "000"; % Healthy
     end
     turbineSize = "15MW";
     name = name+"_"+turbineSize;
