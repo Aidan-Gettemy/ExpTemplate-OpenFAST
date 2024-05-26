@@ -21,7 +21,7 @@ delOut = "false"; %"true" or "false"
 % Delete Big TS dataTable
 delTab = "false"; %"true" of "false"
 
-%% Run Simulation/Clean Up Results
+% Run Simulation/Clean Up Results
 
 % Input Table ID
 inTableID = expName+"_inTable.txt";
@@ -45,7 +45,7 @@ for i = JobNum(1):JobNum(2)
     % Simulate Row i of ExpInputTable, according to stated SetUpFunction
     status = setup(M(i,:),aux);
 end
-%%
+
 % Gather data from StatusFile
 data = gather_up(StatusFileID);
 
@@ -75,7 +75,7 @@ for i = 1:numel(data)
     end
 
 end
-%%
+
 % Create ExperimentResultTable
 variableList = {'mean','sd'};
 expTab = combineResults(M,StatusFileID,variableList);
