@@ -81,7 +81,7 @@ Now we can go in depth on some of the key helper functions to explain how they w
 ### Process for Running
 
 - Run `ExpTableGenerator.m` to generate a table of inputs for each test.
-- Run `ExpDriver.m` to set up the `Simulate` folder and run OpenFAST on each test, gathering up the results from all the tests into a data table, before moving the data table and the `StatusFile.txt` to the experiment folder within the Data folder.
+- Run `ExpDriver.m` to set up the `Simulate` folder and run OpenFAST on each test, gathering up the results from all the tests into a data table, before moving the data table and the `StatusFile.txt` to the experiment folder within the `Data` folder.
 
 # Example: Morris Method Applied with 4 Inputs
 
