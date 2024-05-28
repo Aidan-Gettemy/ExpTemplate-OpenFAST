@@ -34,10 +34,15 @@ function status = setup(tableRow, auxiliary)
     readfile_ID = TempID + "/IEA-15-240-RWT-Monopile/IEA-15-240-RWT-Monopile_ElastoDyn_tower.dat";
     writefile_ID = "Simulate" + "/IEA-15-240-RWT-Monopile/IEA-15-240-RWT-Monopile_ElastoDyn_tower.dat";
     status = chg_tower(readfile_ID,writefile_ID,inputvec);
+
+    % Change the hydrodyn file
+    inputvec = tableRow(1,6:9).Variables;
+    readfile_ID = TempID + "/IEA-15-240-RWT-Monopile/IEA-15-240-RWT-Monopile_HydroDyn.dat";
+    writefile_ID = "Simulate" + "/IEA-15-240-RWT-Monopile/IEA-15-240-RWT-Monopile_HydroDyn.dat";
+    status = chg_hydroDyn(readfile_ID,writefile_ID,inputvec);
     
     % Set up is complete
     status = "All files updated";
-
 
     % ******************************
     % Section Two: Outputs
