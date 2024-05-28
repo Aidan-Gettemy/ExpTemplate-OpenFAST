@@ -92,7 +92,9 @@ As an example, take `chg_tower.m`.
 
 ### Step Seven: Setting up the Parameters of the Result Table
 
-
+Note, a few of the functions included in the `funcs` folder are not described thus far.  These are the plotting functions.
+- `plot_ts.m`:
+- `plot_multi.m`:
 
 ### Process for Running a new Experiment
 
