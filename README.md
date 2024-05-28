@@ -22,7 +22,7 @@ Note: Requires:
 - Properly compiled DLL file (see the ServoDyn file)
 
 Before running scripts, first copy the ***`Template_IEA-15-240-RWT-Monopile` folder and rename it `Simulate`***
-Also, provide an inflow wind file to run tests on (and change `ExpTableGenerator.m` accordingly)
+Also, provide an **inflow wind** file to run tests on (and change `ExpTableGenerator.m` accordingly)
 
 ## Step by Step
 
@@ -32,8 +32,8 @@ Here we will explain how to go from desiging the input table, to modifying the h
 
 The `ExpTableGenerator.m` file uses the selected OpenFAST inputs given to make an InputTable for each experiment.  The resulting table is saved as a text file and will be read by the `ExpDriver.m` script.  Each column represents an independent variable that will trigger a change in the files for OpenFAST to read.  Each test is a row of the table; a unique configuration of the inputs.  Taken together, all of the rows of the table will help to answer some question about wind turbine engineering.  Follow the comments within the table generator file in order to see where to make changes.
 
-- Line 5: Determines the name of the experiment (must match the name given in `ExpDriver.m`
-- Line 16: The *invarNames* refer to the independent variables, or columns in the experiment.  Some of them can be simply a part of the experimental set-up, and not variables at all.  Like in the given example, `windfileID` is the name of the wind file to simulate on
+- Line 5: Determines the name of the experiment (must match the name given in `ExpDriver.m`)
+- Line 16: The *invarNames* refer to the independent variables required settings in the experiment.  Some of them may simply be a part of the experimental set-up and not variables at all.  In the given example, `windfileID` is the name of the wind file to simulate on, and will not be included in analysis.  In future experiments, multiple wind files may be specified.
 - Line 22: If wanted, the user can read in design points from another source and then do additional formating/manipulation in this file.
 - Line 25: Determine the number of tests to be run.
 - Line 27: This is the number of inputs (it could also be the number of independent variables).
@@ -60,17 +60,33 @@ Now we can go in depth on some of the key helper functions to explain how they w
 
 ### Step Three: Set-Up Function
 
+In the next steps, all of the named functions are found in the `funcs` folder.
 
+The `setup.m` function updates the OpenFAST files according to the experiment.  Each row of the input table is extracted and taken as in input to the `setup.m` function.  This function also takes as an input a small set of auxiliary variables.  In this example, those are the file location of the template folder, the current test number, the duration of each test (in seconds), the time step (in seconds), the id for status file, the test number, and the name of the experiment.  This can be changed according to needs.  
+
+This file has three main sections.  In the first section, a series of helper functions are called to set up various module input files and simulation parameters.  In the second section, the output channels are formated according to an included `OutputChannels.txt` file.  Finally, in the third section, the simulation is run through the `testdriver.m` function and the results are moved to the storage folder.  Meanwhile, a status file keeps track of the tests that have been run, and will serve as a tool for indexing the saved tests in the rest of the `ExpDriver.m` script.
 
 ### Step Four: Anatomy of a Helper Function 
 
+In the included script, there are 5 subsections.
+- First, the `make_readme,m' helper function is called.
+- Second, the `chg_wnd.m` helper function is called.
+- Third, the `make_fst.m` helper function is called.
+- Fourth, the `chg_tower.m` helper function is called.
+- Finally, the `chg_hydrodyn.m` helper function is called.
+
+Each of these helper functions is similar and has the job of modifying one type of file for the simulation.  The README file is set up to modify a template file that is designed to document the inputs for a given test.  This file is modified and saved along with the results of the simulation in the test-specific data subfolder at the end of the experiment.  There is a unique readme for each test.  This file can be found in the template directory.
+
+The anatomy of a helper function is simple.  It takes as its input some portion of the current test row, and the location of the template file to be read in and the location of the resulting file to be saved to.
+
+As an example, take `chg_tower.m`.  
 
 
 ### Step Five: Output Channel Control
 
 
 
-### Step Six: Setting up Driver
+### Step Six: Setting up the Driver
 
 
 
@@ -83,9 +99,11 @@ Now we can go in depth on some of the key helper functions to explain how they w
 - Run `ExpTableGenerator.m` to generate a table of inputs for each test.
 - Run `ExpDriver.m` to set up the `Simulate` folder and run OpenFAST on each test, gathering up the results from all the tests into a data table, before moving the data table and the `StatusFile.txt` to the experiment folder within the `Data` folder.
 
+Now the experiment is finished, and the results are organized for analysis.
+
 # Example: Morris Method Applied with 4 Inputs
 
-This application is already set up in these files.  Follow the following steps to recreate results.
+THis repository contains code to perform the Morris Method of global sensitvity analysis.  Follow the these steps to recreate results.
 1. Run `ExpTableGenerator.m`
 2. Run `ExpDriver.m`
 3. Run ONLY the second section and beyond within `MorrisMethod.iypn`.  Follow the comments to make changes to look at different outputs.  If the user wants to run the `MorrisMethod.iypn` code to generate new Morris Method points, then the first section should be run, then run steps **1 - 3**.
