@@ -3,16 +3,15 @@ function status = setup(tableRow, auxiliary)
     % After the files are changed, the output channels are selected.  Finally,
     % this function calls the testdriver function to do the simulation.
 
-    % ******************************
-    % Section One: Simulation set up
-    % ******************************
-     
-    % Make the README file
     TempID = auxiliary{6};
     testNum = auxiliary{4};
     testDur = auxiliary{2};
     DT = auxiliary{3};
-
+    
+    % ******************************
+    % Section One: Simulation set up
+    % ******************************
+     
     % Make the README file for the test
     readmeTempID = TempID+"/README_TEMPLATE.txt";
     header = make_readme(tableRow,readmeTempID,testNum,testDur,DT);
