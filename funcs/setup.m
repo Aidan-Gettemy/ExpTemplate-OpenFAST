@@ -2,7 +2,11 @@ function status = setup(tableRow, auxiliary)
     %SETUP This function drives all of the helper functions. 
     % After the files are changed, the output channels are selected.  Finally,
     % this function calls the testdriver function to do the simulation.
-    
+
+    % ******************************
+    % Section One: Simulation set up
+    % ******************************
+     
     % Make the README file
     TempID = auxiliary{6};
     testNum = auxiliary{4};
@@ -32,6 +36,11 @@ function status = setup(tableRow, auxiliary)
     % Set up is complete
     status = "All files updated";
 
+
+    % ******************************
+    % Section Two: Outputs
+    % ******************************
+    
     % Now we have to set up the output channels
     disp("Modifying Output Channels for...")
     structure = "Simulate/IEA-15-240-RWT";
@@ -42,6 +51,10 @@ function status = setup(tableRow, auxiliary)
     OutChanID = "OutputChannels.txt";
     startlines = [67,107,148,121];
     status = outputfunc(structure,fileIDs,OutChanID,startlines);
+
+    % ******************************
+    % Section Three: Run and Clean-Up
+    % ******************************
 
     % Now we are ready to run the simulation 
     StatusFileID = auxiliary{5};
