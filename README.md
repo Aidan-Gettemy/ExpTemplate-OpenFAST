@@ -81,6 +81,11 @@ The anatomy of a helper function is simple.  It takes as its input some portion 
 
 As an example, take `chg_tower.m`.  
 
+As demonstrated above, the helper functions make use of a few basic functions.  These are:
+- `gather_up.m`:
+- `lay_down.m`:
+- 'editor.m`:
+
 
 ### Step Five: Output Channel Control
 
