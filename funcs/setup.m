@@ -12,6 +12,8 @@ function status = setup(tableRow, auxiliary)
     testNum = auxiliary{4};
     testDur = auxiliary{2};
     DT = auxiliary{3};
+
+    % Make the README file for the test
     readmeTempID = TempID+"/README_TEMPLATE.txt";
     header = make_readme(tableRow,readmeTempID,testNum,testDur,DT);
     
