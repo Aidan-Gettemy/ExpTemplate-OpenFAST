@@ -132,6 +132,9 @@ Now the experiment is finished, and the results are organized for analysis.
 # Example: Morris Method Applied with 4 Inputs
 
 THis repository contains code to perform the Morris Method of global sensitvity analysis.  Follow the these steps to recreate results.
+
+Note: since the result table is already in this repository, one can skip straight to step 3.  Otherwise:
+
 1. Run `ExpTableGenerator.m`
 2. Run `ExpDriver.m`
 3. Run ONLY the second section and beyond within `MorrisMethod.iypn`.  Follow the comments to make changes to look at different outputs.  If the user wants to run the `MorrisMethod.iypn` code to generate new Morris Method points, then the first section should be run, then run steps **1 - 3**.
