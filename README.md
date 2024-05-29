@@ -22,7 +22,7 @@ Note: Requires:
 
 Before running scripts, first copy the ***`Template_IEA-15-240-RWT-Monopile` folder and rename it `Simulate`***.
 
-Also, provide an **inflow wind** file to run tests on (and change `ExpTableGenerator.m` accordingly).
+Also, provide an **inflow wind** file to run tests on (and change `ExpTableGenerator.m` accordingly).  This file needs to be placed in the `Template_IEA-15-240-RWT-Monopile/IEA-15-240-RWT/Wind` folder.
 
 ## Step by Step
 
