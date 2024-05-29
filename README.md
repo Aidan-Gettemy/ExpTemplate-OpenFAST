@@ -1,6 +1,6 @@
 # Template for OpenFAST Experimentation
 
-This library provides a solution for managing experiments with the OpenFAST simulation tool [OpenFAST](https://github.com/OpenFAST/openfast?tab=readme-ov-file) using MatLab.  This code is a general template, fit to be modified for many different experiments.
+This library provides a solution for managing experiments with the OpenFAST [OpenFAST](https://github.com/OpenFAST/openfast?tab=readme-ov-file) simulation tool using MatLab.  This code is a general template, fit to be modified for many different experiments.
 
 # Description:
 
@@ -12,7 +12,7 @@ The heart of the library are two files.
 
 Once the user has configured these files (and the helper functions), running the experiment and organizing the results for further analysis is simple.  Simply run the `ExpTableGenerator.m` then run the `ExpDriver.m`.
 
-This framework streamlines OpenFAST input-output handling, while keeping the data organized.  The user specifies an experiment to run by giving the input (independent) variables and settings for each test in the experiment as a tablematrix/table (each row is a different test, each column a different input).  Then the framework will set up and run the simulations required, organizing the outputs channels (dependent variables) requested by the user into a table that mirrors the input table provided.  The result is a data-folder and a table of outputs from the experiment, in the same row-order as the input table.
+This framework streamlines OpenFAST input-output handling, while keeping the data organized.  The user specifies an experiment to run by giving the input (independent) variables and settings for each test in the experiment as a matrix/table (each row is a different test, each column a different input).  Then the framework will set up and run the simulations required, organizing the outputs channels (dependent variables) requested by the user into a table that mirrors the input table provided.  In the end, the code generates a data-folder and a table of outputs from the experiment, in the same row-order as the input table.  Within the data-folder, small test-specific folders hold the summary files, time series data, and statistics for each test.
 
 # Instructions:
 
@@ -42,7 +42,7 @@ The `ExpTableGenerator.m` file uses the selected OpenFAST inputs given to make a
 
 ### Step Two: How to Run a Simulation
 
-The `ExpDriver.m` file takes the input table from `ExpTableGenerator.m` to set up and run OpenFAST tests.  The results will be found in a newly created Data folder in a sub-folder with the name given by the experiment's name.
+The `ExpDriver.m` file takes the input table from `ExpTableGenerator.m` to set up and run OpenFAST tests.  The results will be found in a newly created Data folder in a sub-folder with the name given by the test's name.
 
 - Line 8: This line sets the experiment name.  It must match the experiment name specified in line 5 of `ExpTableGenerator.m`.
 - Line 10: This file name must match the template files for the desired OpenFAST experiment configuration (in this example the IEA-15-240-RWT-Monopile).
@@ -76,7 +76,7 @@ In the first section of the included `setup.m` script, there are 5 subsections.
 - Fourth, the `chg_tower.m` helper function is called.
 - Finally, the `chg_hydrodyn.m` helper function is called.
 
-Each of these helper functions is similar and has the job of modifying one type of file for the simulation.  There is one file not needed for simulation, but should be changed and saved for each test; the README file is designed to document the inputs for a given test.  This file is modified and saved along with the results of the simulation in the test-specific data subfolder at the end of the experiment.  In this way, there is a unique README for each test.  This file can be found in the template directory.
+Each of these helper functions is similar and has the job of modifying one type of file for the simulation.  There is one file not needed for simulation, but should be changed and saved for each test; the README file is designed to document the inputs for a given test.  This file is modified and saved along with the results of the simulation in the test-specific data subfolder at the end of the experiment.  In this way, there is a unique README for each test.  This file can be found in the template directory.  The `make_readme.m` function can be modified to name tests according to any convention.  One obvious convention is to name tests based on the value of the independent variables for that specific test.
 
 The anatomy of a helper function is simple.  It takes as its input some portion of the current test row, and the location of the template file to be read in and the location of the resulting file to be saved to.
 
