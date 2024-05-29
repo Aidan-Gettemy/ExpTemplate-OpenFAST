@@ -21,8 +21,9 @@ Note: Requires:
 - OpenFAST excecutable (adjust the path in the `testdriver.m` file)
 - Properly compiled DLL file (see the ServoDyn file)
 
-Before running scripts, first copy the ***`Template_IEA-15-240-RWT-Monopile` folder and rename it `Simulate`***
-Also, provide an **inflow wind** file to run tests on (and change `ExpTableGenerator.m` accordingly)
+Before running scripts, first copy the ***`Template_IEA-15-240-RWT-Monopile` folder and rename it `Simulate`***.
+
+Also, provide an **inflow wind** file to run tests on (and change `ExpTableGenerator.m` accordingly).
 
 ## Step by Step
 
