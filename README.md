@@ -92,21 +92,32 @@ As an example, take `chg_tower.m`.
 As demonstrated above, the helper functions make use of a few basic functions.  These are:
 - `gather_up.m`:
 - `lay_down.m`:
-- 'editor.m`:
+- `editor.m`:
 
 ### Step Five: Output Channel Control
 
+This is the second section of the `setup.m` function.
 
+This is run through `outputfunc.m`.  This function allows us to modify the output channels that we want to look at.  For this to work, the output sections at the end of each of the OpenFAST files for the different included modules in the Template folder must be deleted and moved to the output channel file with the particular set-up as seen in `OutputChannels.txt`.  If this recipe isn't followed (that is the 1001 included to delieanted between each section) then the code fails.  When this script runs, it appends each of these sections to the proper files in the simulate folder.  Adding and deleting channels is done on the `OutputChannels.txt` file.  The inputs to this function are the first part of the file ID for the simulate folder.  The cell of file ids is needed to correctly access each module file.  We need to know the location of the Output.txt file.  And last, we need to know the line where the output section begins for each module file.  
 
 ### Step Six: Setting up the Driver
 
+This is the part of the `setup.m` function where the simulation actually takes place.  In the `testdriver.m` file, line 8 needs to point to the OpenFAST executable that you use.  Line 11 must point to the correct folder for where the .fst file will be.  Note, for different tests, the `move_clean.m` function might need to be adjusted so that it moves the required output files to the data folder for each test.  
+
+Returning to the `setup.m` function, everything else deals with filling in the statusFile as the experiment progresses.  This file has many purposes.  It can be used to restart the experiment if a simulation crashed.  It can be used to index into the data folders conveniently.  It is needed for the data-table construction process.  If this framework is followed, the user does not need to change any lines after line 68.
 
 
 ### Step Seven: Setting up the Parameters of the Result Table
 
+Back in the `ExpDriver.m` script, there are two more functions to address.  First, in line 58 we call the `resultfunc.m` helper function.  Since this function is called in a loop over the lines of the statusFile, that means we are accessing files that have been moved to the data folder.  The `resultsfunc.m` function calls two basic functions.  The first, `create_mat_files.m`, will make a table version of the `.out` file and will save the names of all of the outputs, as well as their units into a `.mat` file (cell).  The second, `create_sum_table.m` is more complicated.  This makes a table, where each row is given the name of one of the output channels.  Each column is some sort of statistic derived from the time series.  In this example, those statics are the mean and the standard deviation.  Note that additional attributes could be calculated (like frequencies), and, additional functions could be written to generate other types of time-series features.  If more features are added, line 30 will need to be modified, as well.  Note that all of these features need to be included in line 80 of the `ExpDriver.m` script.
+
+Finally, when setting up the `combineResults.m` function, which is called in line 81 of `ExpDriver.m`, as long as the variable list corresponds with the features calculated in the `create_sum_table.m` function, then no lines need to be changed.  The resulting table will have both the input table, and the output feature value for each output channel/feature combination.  Each row of this table is a different test.  This is table is a convenient way of doing analysis on the experiment, or doing machine learning tasks, like training a Regression or classification algorithm.
+
 Note, a few of the functions included in the `funcs` folder are not described thus far.  These are the plotting functions.
-- `plot_ts.m`:
-- `plot_multi.m`:
+- `plot_ts.m`: This requires the variable names (as formattedd in the data-folders), and a table of time series data.
+- `plot_multi.m`: Requires inputs, the table of time series data, the names (as formatted in the data-folders), and a table that gives what outputs to be plotted each other.
+
+Additional functions should be written as needed, especially when seeking to expand the input available to be changed.  This might require some creativity for efficient indexing and modifying, but the existing functions are good blueprints.  The most common type of addaptation is in helper functions that set up the various module files.  The changes needed to adapt the summary tables are very slight.
 
 ### Process for Running a new Experiment
 
@@ -141,4 +152,8 @@ The fourth code-block is the most important to explain.
 - Line 33: The top 3 inputs (measured by Euclidean distance from the origin in the (mu_star, sigma) plane) are printed out.
 - Line 38: Below this is all formatting for the plot.
 
-The plot is explained as follows 
+The output is explained below:
+First, the name of the output we selected.
+A table of the Morris Results.
+The top three inputs.
+The plot: On the right, the legend delinated by shapes and colors.  The x axis is the mu_star value and the sigma value is on the y axis.
