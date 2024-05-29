@@ -158,7 +158,7 @@ The fourth code-block is the most important to explain.
 - Line 38: Below this is all formatting for the plot.
 
 The output is explained below:
-First, the name of the output we selected.
-A table of the Morris Results.
-The top three inputs.
-The plot: On the right, the legend delinated by shapes and colors.  The x axis is the mu_star value and the sigma value is on the y axis.
+
+First, we will see the name of the output we selected.  Next, there will be a table of the Morris Results.  That includes the mu value and the mu star value.  These values are the average and the absolute average of all of the elementary effects.  Inputs with a large mu_star have a strong linear effect on the output.  The sigma value is the standard deviation of the elementary effects.  A large sigma value indicated interaction with other inputs produces a strong effect on the output.  The confidence intervals indicate how reliable mu and sigma have been calculated.  If the confidence interval is similar in magnitude to the value itself, then the test result is unreliable.  Also, very small values in comparison to the magnitute of the output might indicate that the change is inconsiquential.  
+
+The next output seen is the the top three inputs ranking.  Then we see the plot.  On the right, the legend for each input delinated by shapes and colors.  The mu_star value is tracked along the x axis and the sigma value is on the y axis.
