@@ -26,8 +26,8 @@ function [status, length] = create_sum_table(directory,in_table,loc,DT)
         name = variablenames{i};
         names(i) = string(name) ;
     end
-    Means = Means';Stds = Stds';DomFreq = DomFreq';subDomFreq = subDomFreq';
-    T = table(Means,Stds,DomFreq,subDomFreq);
+    Means = Means';Stds = Stds';
+    T = table(Means,Stds);
     T.Properties.RowNames = names;
     output_ID = directory + "/SensorData_Sum.txt";
     writetable(T,output_ID,'WriteRowNames',true)
