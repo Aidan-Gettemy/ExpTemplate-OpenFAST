@@ -91,9 +91,9 @@ As an example, take `chg_tower.m`.
 - Line 21: The modified data cell is printed to the correct location in the simulation directory.  We are good to go.
 
 As demonstrated above, the helper functions make use of a few basic functions.  These are:
-- `gather_up.m`:
-- `lay_down.m`:
-- `editor.m`:
+- `gather_up.m`: takes a fileID and returns a cell of all of its lines.
+- `lay_down.m`: take a cell made up of file lines and saves a text file to a specific location.
+- `editor.m`: this function is the very center of the text-editing scheme that is the true objective of this entire library.  Everything about this library is directed to set up this function to change the text to enable different test settings.
 
 ### Step Five: Output Channel Control
 
@@ -119,6 +119,8 @@ Note, a few of the functions included in the `funcs` folder are not described th
 - `plot_multi.m`: Requires inputs, the table of time series data, the names (as formatted in the data-folders), and a table that gives what outputs to be plotted each other.
 
 Additional functions should be written as needed, especially when seeking to expand the input available to be changed.  This might require some creativity for efficient indexing and modifying, but the existing functions are good blueprints.  The most common type of addaptation is in helper functions that set up the various module files.  The changes needed to adapt the summary tables are very slight.
+
+Now we have gone through what each file does.  Hopefully this is clear enough to run and recreate the results of this experiment, and to adapt this framework for one's own experimental needs.
 
 ### Process for Running a new Experiment
 
