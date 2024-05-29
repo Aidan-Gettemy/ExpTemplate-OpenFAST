@@ -12,6 +12,14 @@ TwSSStif_node1: x
 TwSSStif_node2: x
 
 %————————————————————————%
+Wave Properties
+%————————————————————————%
+waveMod: x
+waveHs: x
+waveTp: x
+waveDir: x
+
+%————————————————————————%
 Simulation_time: x
 DT: x
 Turbine_Model: IEA-15-240-RWT-Monopile
