@@ -68,7 +68,7 @@ This file has three main sections.  In the first section, a series of helper fun
 
 ### Step Four: Anatomy of a Helper Function 
 
-In the included script, there are 5 subsections.
+In the first section of the included `setup.m` script, there are 5 subsections.
 - First, the `make_readme,m' helper function is called.
 - Second, the `chg_wnd.m` helper function is called.
 - Third, the `make_fst.m` helper function is called.
@@ -79,13 +79,20 @@ Each of these helper functions is similar and has the job of modifying one type 
 
 The anatomy of a helper function is simple.  It takes as its input some portion of the current test row, and the location of the template file to be read in and the location of the resulting file to be saved to.
 
-As an example, take `chg_tower.m`.  
+As an example, take `chg_tower.m`. 
+
+- Line 5: We gather up all the lines from the template file into a cell.
+- Line 9: Each line is split before it can be used.  Depending on the type of file/line being edited, different entries of the resulting string array need to be modified.  In this case, the tower properties being edited are the 4th and 5th entries.
+- Line 15: The form vector establishes the text style that will be entered into the simulation directory.
+- Line 16: The formats object takes as its parts the form vector, and an array with ones and zeros.  The ones correspond to entries in the form vector that will be replaced.
+- Line 17: The edit_type cell takes sub-cells that have a simple form.  The number of subcells must match the dimension of the array in Line 9.  THe sub-cells have the form {"multiply/replace", value}.  The multiply trigger means that value will be multiplied by the entry found in the corresponding edit spot in the template file.  The replace trigger means that value will replace what was originally in that location.  Multiply only works with doubles.  Replace can be any entry.
+- Line 18: In this line, we replace the ith entry of the data cell (which contains all of the lines of the original file), with the instructions on how to modify that line.  The last input to the `editor.m` helper function is a number (called the *flag*).  If *flag* equals 1, then the value (or multiply) if it is numeric, will be saved in scientific notation with 15 significant digits.  Otherwise, the value is saved with 4 significant digits, not in scientific form.
+- Line 21: The modified data cell is printed to the correct location in the simulation directory.  We are good to go.
 
 As demonstrated above, the helper functions make use of a few basic functions.  These are:
 - `gather_up.m`:
 - `lay_down.m`:
 - 'editor.m`:
-
 
 ### Step Five: Output Channel Control
 
@@ -115,4 +122,23 @@ THis repository contains code to perform the Morris Method of global sensitvity 
 2. Run `ExpDriver.m`
 3. Run ONLY the second section and beyond within `MorrisMethod.iypn`.  Follow the comments to make changes to look at different outputs.  If the user wants to run the `MorrisMethod.iypn` code to generate new Morris Method points, then the first section should be run, then run steps **1 - 3**.
 
-Explanation of the `MorrisMethod.iypn` code.
+### Explanation of the `MorrisMethod.iypn` code and this tower sensitivity experiment. 
+
+The goal of this example library is to explore the sensitivity of a large number of output channels (the mean and standard deviation of their time series) simulated from a turbulent wind file (not included in this library, but it could be any such file configured for this turbine model) to 4 different inputs.  Those inputs are as follows: the fore-aft stiffness of the tower in the first node, the side-side stiffness of the tower in the first node, the wave height, and the wave direcition.  These independent variables are varied in the following ranges:
+- FA: up to 10% reduction
+- SS: up to 10% reduction
+- wave height: 10% change plus/minus around 1.1 m
+- wave dir: from -10 degrees to 10 degrees.
+Information about the Morris Method can be found in this article: Cropp, Roger A., and Roger D. Braddock. "The new Morris method: an efficient second-order screening method." Reliability Engineering & System Safety 78, no. 1 (2002): 77-83.
+
+Now, in the `MorrisMethod.iypn` file, the first section generates the Morris points.  We outline the structure of the problem first.  Then we set a number of potential trajectories to generate (100).  We decide to partition each input range into 6 sections.  Then we choose 10 trajectories optimally.  This means that we will need to run (4+1)*10 total simulations.  
+
+The output from this section is a text file that is an input to 'ExpTableGenerator.m`.  After we run this MatLab script, we run the 'ExpDriver.m` file (as described in all of the above instructions).  The end result is a final table that has each output channel (means and standard deviations).  This output file is loaded in along with the Morris points.  
+
+The fourth code-block is the most important to explain.  
+- Line 1: Select the desired output to observe
+- Line 11: Set up the SALib Morris object.
+- Line 33: The top 3 inputs (measured by Euclidean distance from the origin in the (mu_star, sigma) plane) are printed out.
+- Line 38: Below this is all formatting for the plot.
+
+The plot is explained as follows 
